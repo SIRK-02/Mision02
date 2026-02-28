@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ClickerMVVM</string>
+    <string name="btn_restar">Reservar</string>
+    <string name="welcome_msg">Contador Actual:</string>
+</resources>
