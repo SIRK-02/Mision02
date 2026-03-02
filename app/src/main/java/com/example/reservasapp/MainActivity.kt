@@ -18,7 +18,11 @@ class MainActivity : AppCompatActivity() {
         val btnRestar: Button = findViewById(R.id.btnRestar)
 
         miViewModel.numero.observe(this){valorActualizado->
-            tvContador.text = valorActualizado.toString()
+            tvContador.text = if (valorActualizado == 0) "Agotado" else valorActualizado.toString()
+        }
+
+        miViewModel.botonHabilitado.observe(this){habilitado ->
+            btnRestar.isEnabled = habilitado
         }
 
         btnRestar.setOnClickListener { miViewModel.reservar() }

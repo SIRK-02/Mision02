@@ -10,7 +10,7 @@
         android:id="@+id/tvContador"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
+        android:text="@string/welcome_msg"
         android:textSize="50sp"
         android:textColor="@color/primary_blue"/>
     <Button
