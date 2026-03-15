@@ -5,20 +5,24 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class ReservaViewModel: ViewModel() {
-    private val _numero = MutableLiveData(20)
-    val numero: LiveData<Int>get() = _numero
+    private val _cupos = MutableLiveData(20)
+    val cupos: LiveData<Int>get() = _cupos
 
     private val _botonHabilitado = MutableLiveData(true)
     val botonHabilitado: LiveData<Boolean> get() = _botonHabilitado
 
-    fun reservar(){
-        val actual = _numero.value?: 0
+    private val _mensaje = MutableLiveData("Asientos libres")
+    val mensaje: LiveData<String> get() = _mensaje
 
-        if (actual>0) {
-            val nuevoValor = actual-1
-            _numero.value = nuevoValor
+    fun reservarAsiento(){
+        val cantidadActual = _cupos.value?: 0
 
-            if (nuevoValor == 0) {
+        if (cantidadActual > 0) {
+            val nuevaCantidad = cantidadActual - 1
+            _cupos.value = nuevaCantidad
+
+            if (nuevaCantidad == 0) {
+                _mensaje.value = "Agotado"
                 _botonHabilitado.value = false
             }
 

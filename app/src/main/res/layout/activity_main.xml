@@ -7,16 +7,19 @@
     android:gravity="center"
     android:padding="20dp">
     <TextView
-        android:id="@+id/tvContador"
+        android:id="@+id/tvCupos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/welcome_msg"
-        android:textSize="50sp"
-        android:textColor="@color/primary_blue"/>
+        android:text="Cupos restantes: 20"
+        android:textSize="24sp" />
+    <TextView
+        android:id="@+id/tvEstado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Asientos disponibles"/>
     <Button
-        android:id="@+id/btnRestar"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnReservar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_restar"
-        android:backgroundTint="@color/succes_green"/>
+        android:text="Reservar" />
 </LinearLayout>

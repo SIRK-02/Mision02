@@ -1,31 +1,41 @@
 package com.example.reservasapp
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private val miViewModel: ReservaViewModel by viewModels()
+    private lateinit var tvCupos: TextView
+    private lateinit var tvEstado: TextView
+    private lateinit var btnReservar: Button
+    private val viewModel: ReservaViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val tvContador: TextView = findViewById(R.id.tvContador)
-        val btnRestar: Button = findViewById(R.id.btnRestar)
+        tvCupos = findViewById(R.id.tvCupos)
+        tvEstado = findViewById(R.id.tvEstado)
+        btnReservar = findViewById(R.id.btnReservar)
 
-        miViewModel.numero.observe(this){valorActualizado->
-            tvContador.text = if (valorActualizado == 0) "Agotado" else valorActualizado.toString()
+        viewModel.cupos.observe(this) { cantidad ->
+            tvCupos.text = "Cupos restantes: $cantidad"
         }
 
-        miViewModel.botonHabilitado.observe(this){habilitado ->
-            btnRestar.isEnabled = habilitado
+        viewModel.mensaje.observe(this) { texto ->
+            tvEstado.text = texto
         }
 
-        btnRestar.setOnClickListener { miViewModel.reservar() }
+        viewModel.botonHabilitado.observe(this) { estaHabilitado->
+            btnReservar.isEnabled = estaHabilitado
+        }
+
+        btnReservar.setOnClickListener {
+            viewModel.reservarAsiento()
+        }
     }
 }
 
